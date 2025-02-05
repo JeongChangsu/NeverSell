@@ -1,4 +1,4 @@
-[Click here for Korean version](./README_ko.md)
+[Click here for Korean version 🇰🇷](./README_ko.md)
 
 # NeverSell
 
