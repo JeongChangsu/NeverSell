@@ -1,248 +1,162 @@
-[영문 버전 보러가기](./README_en.md)
+[Click here for Korean version](./README_ko.md)
 
 # NeverSell
 
-**NeverSell**은 암호화폐 거래소 또는 개인 월렛에서 암호화폐를 꾸준히 적립 매수(DCA – Dollar Cost Averaging)하도록 자동화해주는 오픈소스 프로젝트다. “절대 팔지 않는다(Never Sell)”라는 장기 투자 관점을 바탕으로, 가격 변동에 일희일비하지 않고, 정기적으로 일정 금액씩 비트코인을 매수함으로써 안정적으로 포트폴리오를 구축할 수 있도록 돕는다. 
+*NeverSell is an open-source application that automates recurring Bitcoin purchases (DCA – Dollar Cost Averaging) on crypto exchanges. It aims to help users steadily accumulate cryptocurrency without emotion-driven trading, essentially encouraging a "never sell" long-term mindset.* 
 
-- **프로젝트 명**: NeverSell
-- **목표**: 사용자가 거래소(초기에는 바이낸스)의 API 키를 연결하여 특정 주기로 자동 비트코인 매수를 수행
-- **단계별 진화**: 
-  - 초기에는 CLI(커맨드라인 툴)로 간단히 기능을 테스트  
-  - 이후에는 모바일 앱으로 발전하여 UI/UX를 제공  
-  - 장기적으로 다양한 거래소, 지갑 지원 및 고급 매수 전략(DIP 매수 등) 추가  
-  - 구독 모델 등을 통한 상용화 가능성 모색  
+## Project Introduction
 
-<br>
+**NeverSell** enables users to connect to a crypto exchange (initially Binance) via API keys and schedule automatic periodic purchases of Bitcoin. The project will start as a simple Command Line Interface (CLI) tool for testing the core functionality, and then evolve into a full-fledged mobile app. The long-term vision includes support for multiple exchanges and wallets, more advanced DCA strategies (like buying extra on dips), and a subscription model for premium features. By automating crypto dollar-cost averaging, NeverSell helps investors avoid trying to time the market and instead consistently build their portfolio over time.
 
-## 프로젝트 개요
+**Key Goals:**
 
-**NeverSell**은 아래와 같은 기능을 구현하고, 지속적으로 확장해 나가려 한다:
+- **Automate DCA Purchases:** Allow users to set up recurring buy orders on a schedule (e.g., daily/weekly Bitcoin buys) through exchange APIs, starting with Binance.  
+- **Mobile App Accessibility:** Provide an easy-to-use mobile application so users can monitor and adjust their DCA settings on the go.  
+- **Advanced Strategies:** In future updates, implement smart features such as a "buy the dip" option that executes extra purchases when prices drop significantly ([Why You Should Care About Dollar-Cost Averaging Your Crypto - Blockworks](https://blockworks.co/news/why-you-should-care-about-dollar-cost-averaging-your-crypto#:~:text=Being%20able%20to%20automatically%20buy,miss%20out%20on%20some%20gains))  as well as other strategy tweaks based on market conditions.  
+- **Multi-Exchange Support:** Extend support to popular exchanges like Coinbase, Kraken, Bitfinex, etc., and possibly integrate with crypto wallets, so users can aggregate their DCA strategy across platforms.  
+- **Subscription Model:** Eventually offer premium features through a subscription (e.g. advanced strategy customization, priority support), with secure payment integration (Stripe/PayPal) for sustainability.  
+- **Community-Driven & Open Source:** Develop the project in the open, encouraging community contributions, feedback, and transparency. All core features will be free and open-source, with an option for users to support development via a subscription for added services.
 
-1. **자동 DCA 매수**  
-   사용자는 바이낸스 등의 거래소 API 키를 연결하고, 일정 주기(예: 매일, 매주)와 금액을 설정한다. 그러면 NeverSell이 자동으로 해당 거래소에서 비트코인을 정해진 주기로 매수해준다.
+## Tech Stack & Development
 
-2. **모바일 앱 제공**  
-   CLI 형태의 MVP(최소기능제품)로 출발하지만, 향후 모바일 앱(iOS/Android)을 출시하여 손쉽게 DCA 현황을 모니터링하고 설정을 변경할 수 있도록 지원한다.
+To achieve high productivity and code quality, we plan to use a modern, trending tech stack:
 
-3. **고급 전략(DIP 매수 등)**  
-   단순히 같은 금액을 정기적으로 매수하는 것뿐 아니라, 시장 상황(가격 급락 시점)에 조금 더 매수하는 기능 등 다양한 전략을 제공할 계획이다.
+- **CLI Prototype:** For the initial MVP, we'll use **Python** due to its ease of use and rich ecosystem. Python has mature libraries for interacting with the Binance API (e.g. `python-binance`) which can speed up development. This allows quick testing of the DCA logic in a simple script. (Alternatively, Node.js could be considered here to later share code with a JavaScript-based mobile app, but Python offers a faster start for CLI tests.)
 
-4. **다양한 거래소 및 월렛 연동**  
-   바이낸스 외에도 Coinbase, Kraken, Bitfinex 등 여러 거래소를 지원하고, 필요 시 개인 지갑/디파이 서비스와도 연동할 수 있는 확장성을 갖춘다.
+- **Mobile Application:** The mobile app will be cross-platform. We are evaluating **React Native** vs **Flutter** for this purpose. React Native, using JavaScript/TypeScript, offers rapid cross-platform development and a large community, whereas Flutter (Dart language) provides a highly consistent UI and excellent performance ([Flutter vs React Native: 2024년에 어떤 것을 선택해야 할까요? | UltaHost Blog](https://ultahost.com/blog/ko/flutter-%EB%8C%80-react-native/#:~:text=,%EC%84%B1%EB%8A%A5%EC%97%90%20%EB%B3%80%EB%8F%99%EC%9D%B4%20%EC%9E%88%EC%9D%84%20%EC%88%98%20%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4))  React Native is a more mature technology with a broader ecosystem of libraries and developers, though it may require optimization for performance in complex scenarios ([Flutter vs React Native: 2024년에 어떤 것을 선택해야 할까요? | UltaHost Blog](https://ultahost.com/blog/ko/flutter-%EB%8C%80-react-native/#:~:text=%EA%B7%B8%EB%9F%AC%EB%82%98%20Flutter%EC%99%80%20%EB%B9%84%EA%B5%90%ED%95%A0%20%EB%95%8C%20React,%EC%9B%90%ED%99%9C%ED%95%9C%20%EC%86%94%EB%A3%A8%EC%85%98%EC%9D%84%20%EB%B0%9B%EA%B2%8C%20%EB%90%A0%20%EA%B2%83%EC%9E%85%EB%8B%88%EB%8B%A4))  Flutter has been rapidly growing in popularity and delivers near-native performance with a single codebase for iOS and Android. We will choose the framework that best balances development speed, community support, and app performance for NeverSell. (Native development in Kotlin/Swift is an alternative for maximum performance, but would double the development effort, so we prefer cross-platform for the MVP.)
 
-5. **구독 모델**  
-   서비스가 안정화되고 기능이 다양해지면, 일부 고급 기능(예: 고급 전략, 멀티 거래소 동시 운용, 프리미엄 지원 등)에 대해 구독 기반 모델을 도입할 가능성을 열어둔다.
+- **Backend Services:** Initially, the app may call exchange APIs directly (from the CLI or mobile client). However, as features grow (scheduled background tasks, user account management, subscriptions), we anticipate introducing a lightweight backend. This could be built with **Node.js/Express** (leveraging JavaScript synergy with React Native) or **Python/FastAPI**. The backend would securely store user settings, schedule DCA jobs (so that buys can execute even if the app isn’t running), and handle subscription payments. A database (SQL or NoSQL) will be used if we need to persist user profiles, API keys (encrypted), and logs. We will design the system such that API keys are handled securely – possibly kept client-side for the basic version, or end-to-end encrypted if sent to a server.
 
-6. **오픈소스 커뮤니티**  
-   프로젝트는 오픈소스로 운영되며, 누구든지 기여하고 참여할 수 있다. GitHub를 통해 이슈와 PR을 관리하고, 프로젝트 로드맵 및 개발 현황을 투명하게 공개한다.
+- **Exchange Integration:** We use the official **Binance API** for trading. Going forward, to support multiple exchanges without rewriting lots of code, we can leverage a unified library like **CCXT** which supports over 100 crypto exchanges through a single interface ([What is CCXT? – Coinmetro Help Centre](https://help.coinmetro.com/hc/en-gb/articles/16351978148893-What-is-CCXT#:~:text=CCXT%20,Learn%20more))  This will greatly simplify adding exchanges like Coinbase, Kraken, Bitfinex, etc., and even various wallet services, by standardizing how we call their APIs.
 
-<br>
+- **IDE & Tools:** Contributors can use their preferred development environment, but we recommend **Visual Studio Code** for its versatility and rich plugin ecosystem. In particular, we suggest trying out AI-powered coding assistants to boost productivity. For example, **Cursor IDE** (an AI-enhanced fork of VS Code) integrates large-language-model capabilities directly into the editor, offering intelligent code completions and refactor suggestions that reduce cognitive load and accelerate development ([My New Favorite IDE: Cursor](https://www.mensurdurakovic.com/my-new-favorite-ide-cursor/#:~:text=Cursor%20IDE%20represents%20an%20innovative,difference%20when%20using%20Cursor%20IDE))  Tools like Cursor or GitHub Copilotcan automate boilerplate and help catch issues early, allowing developers to focus on core logic. Using such tools is optional but can be a great aid in a project of this scope.
 
-## 기술 스택 및 개발 환경
+By combining these technologies and tools, NeverSell's development will be efficient and the resulting app should be robust and scalable. We aim to use well-supported, popular frameworks to ensure maintainability and to attract open-source contributors familiar with these stacks.
 
-**NeverSell**은 다음과 같은 스택과 도구를 고려하고 있다:
+## Installation & Usage
 
-- **초기 MVP(CLI)**:  
-  - **Python**을 우선 선택. 이유는 사용하기 쉽고, `python-binance` 등 바이낸스 API 연동 라이브러리가 풍부하기 때문.  
-  - CLI 형태로 빠르게 DCA 로직을 구현할 수 있으며, 스크립트 배포도 간단하다.
+Currently, **NeverSell** is in an early stage. We have a prototype CLI tool available, and the mobile app is under development. Below are instructions for using the CLI and notes on the upcoming mobile app:
 
-- **모바일 앱**:  
-  - **React Native** vs **Flutter**를 주요 후보로 검토.  
-  - React Native는 JavaScript/TypeScript 기반으로 생태계가 크고 빠른 개발이 가능.  
-  - Flutter는 Dart 기반으로 퍼포먼스가 우수하고, 일관된 UI를 제공.  
-  - 두 프레임워크 모두 iOS/Android 크로스플랫폼 개발이 용이하다.  
-  - 실제로는 PoC(개념증명)나 팀 역량, 커뮤니티 지원 등을 고려해 최종 결정할 예정.
+### CLI Version (MVP)
 
-- **백엔드 서비스(확장 시)**:  
-  - 초기에 CLI/모바일에서 직접 거래소 API를 호출할 수 있으나,  
-  - 회원 관리, 구독 결제, 서버 스케줄링 등의 기능이 필요해지면, Node.js(Express)나 Python(FastAPI) 기반으로 간단한 서버를 구축할 계획.  
-  - DB(관계형 or NoSQL)를 이용해 사용자 정보, API 키(암호화하여 저장), 매수 로그 등을 관리할 수도 있음.
+The CLI tool allows you to test basic DCA functionality on Binance.
 
-- **거래소 연동**:  
-  - 초기에는 **Binance** API 직접 사용(`python-binance` 등).  
-  - 이후 다중 거래소 지원을 위해 **CCXT**(다양한 거래소 API를 통합 지원하는 라이브러리)를 고려.  
-  - CCXT를 사용하면 추가 거래소 연동이 용이해져, Coinbase, Kraken, Bitfinex 등을 빠르게 지원 가능.
+1. **Prerequisites:** Ensure you have Python 3.x installed. You will need a Binance account with API keys (with trading permissions enabled). For security, *never enable withdrawal permission on the API key* and treat your keys with care.
 
-- **IDE 및 개발 도구**:  
-  - 범용성, 커뮤니티를 고려해 **VS Code**를 추천.  
-  - AI 코딩 보조 도구(예: **Cursor AI**, GitHub Copilot 등)와 연계해 개발 생산성을 높일 수 있음.  
-  - Python, Dart, JavaScript 등 필요한 언어에 대한 풍부한 익스텐션이 존재해 설정이 간편하다.
-
-<br>
-
-## 설치 및 사용 방법
-
-프로젝트 초기 단계이므로, 현재는 **CLI 도구** 형태의 MVP만 존재한다고 가정하자. 이후 모바일 앱이 출시되면 별도의 설치/사용 가이드를 추가할 예정이다.
-
-### 1. CLI 버전 (MVP)
-
-1. **사전 준비**  
-   - Python 3.x 설치  
-   - 바이낸스 계정 및 API 키(트레이딩 권한 필요, 출금 권한은 비활성화)  
-   - API 키는 반드시 안전하게 보관할 것
-
-2. **프로젝트 클론 및 의존성 설치**  
+2. **Installation:** Clone this repository to your local machine. Install the required Python libraries by running for example:  
    ```bash
-   git clone https://github.com/JeongChangsu/never-sell.git
-   cd never-sell
    pip install -r requirements.txt
-   ```
+   ```  
+   (The requirements file includes packages like `python-binance` for API access and any others needed for logging, etc.)
 
-3. **환경 설정**  
-   - `BINANCE_API_KEY`, `BINANCE_API_SECRET` 환경 변수를 설정하거나,  
-   - `.env` 또는 `config.yml` 같은 파일에 API 키를 저장(단, 민감정보는 공개 저장소에 올리지 않도록 주의)  
-   - API 키가 노출되지 않도록 `.gitignore` 처리 필수
+3. **Configuration:** Provide your Binance API Key and Secret to the application. You can do this by either:  
+   - Setting environment variables `BINANCE_API_KEY` and `BINANCE_API_SECRET`, **or**  
+   - Editing the config file (e.g., `config.yml` or `.env`) with your keys.  
 
-4. **CLI 실행**  
+   *Your API keys are stored locally and are **never** uploaded. The app will handle them securely in memory when executing trades.* 🔐
+
+4. **Usage:** Run the CLI program to start the DCA process. For example:  
    ```bash
-   python neversell_cli.py --interval 1d --amount 10
-   ```
-   - 매일(1d) 10달러 상당의 BTC를 매수하라는 예시  
-   - 파라미터는 `--help` 옵션을 통해 확인 가능
+   python neversell_cli.py --interval 7d --amount 50
+   ```  
+   This would instruct NeverSell to buy $50 worth of Bitcoin every 7 days. The CLI supports options such as interval (daily/weekly/etc.), amount per purchase, target asset (default BTC), and perhaps exchange selection (future). You can also run `python neversell_cli.py --help` to see all available options.
 
-5. **로그 확인**  
-   - 매수 시도 시간, 체결 가격, 매수 수량 등이 콘솔 및 로그 파일에 기록됨  
-   - 오류가 발생하면 에러 메시지로 표시
+5. **Logging:** The CLI will output logs to the console (and to a log file) for each purchase attempt. You’ll see information like timestamp of purchase, executed price, amount of BTC bought, etc. This helps in reviewing that the DCA is working as expected.
 
-6. **중지**  
-   - CLI가 반복 매수를 계속하도록 구현되어 있으면, `Ctrl + C` 등으로 중단  
-   - 이후에는 크론(Cron) 등을 이용해 정기 실행하거나, 프로젝트가 서버 스케줄링 기능을 지원하도록 발전시킬 계획
+6. **Stopping:** If you started a continuous DCA process (e.g., a script that sleeps and repeats buys), you can stop it with Ctrl+C. In the future, we might support running as a background service or a cron job for automation.
 
-<br>
+*Note:* The CLI is mainly for initial testing and may not have a sophisticated scheduler. For long-running usage, consider using OS scheduling (cron/Task Scheduler) to invoke the CLI at desired intervals, or wait for our backend scheduling feature in a later update.
 
-## 모바일 앱 (예정)
+### Mobile App (Coming Soon)
 
-- **개발 프레임워크**: React Native 또는 Flutter 중 최종 결정 후 진행  
-- **기본 기능**:  
-  - 사용자 로그인/회원가입  
-  - API 키 등록 및 저장(로컬 안전 저장소)  
-  - 매수 주기/금액 설정 및 변경  
-  - DCA 진행 상황 및 누적 매수 정보 조회  
-  - 매수 알림(옵션)  
-- **출시**:  
-  - iOS, Android 양대 앱 마켓에 배포 예정  
-  - 추후 테스트버전은 TestFlight/Play 스토어 베타 등을 통해 제공  
-- **기술적 세부사항**:  
-  - React Native라면 Node.js/Express 혹은 Firebase 등을 백엔드로 활용 가능  
-  - Flutter라면 Dart 생태계를 활용하며, 백엔드는 동일하게 Python/Node.js 등 선택 가능  
-  - 사용자 데이터와 거래소 API 키는 안전하게 암호화해 저장할 필요가 있음  
+The NeverSell mobile app is under active development. It will provide a user-friendly interface and additional features on top of the core DCA functionality.
 
-앱이 어느 정도 완성되면 여기 **README**에 설치/빌드/실행 방법 등을 상세히 안내할 예정이다.
+**Planned features for the Mobile MVP:**
 
-<br>
+- Secure login and API key management within the app (API keys will be stored in encrypted storage on your device).
+- A dashboard showing your DCA progress: total BTC accumulated, average purchase price, next scheduled buy, etc.
+- Ability to start/stop or modify your DCA plan (frequency, amount) from the app.
+- Notifications or alerts (optional) for each successful purchase or if an error occurs.
+- All actions will be executed via the same backend logic used in the CLI, ensuring consistency.
 
-## 기여 방법 (오픈소스)
+Once the app is ready, you will be able to install it from the app stores (Android Play Store and iOS App Store for end-users). For developers or testers who want to run it from source, instructions will be provided (likely involving Node.js or Flutter SDK, depending on the framework chosen):
 
-**NeverSell**은 오픈소스 프로젝트로, 누구든 자유롭게 코드를 확인하고 기여할 수 있다.
+- If **React Native** is chosen: you'll need Node.js and `npm`/`yarn`. After pulling the code, run `npm install` to fetch dependencies, then use `npm run android` / `npm run ios` (or Expo CLI) to launch the app on an emulator or device.  
+- If **Flutter** is chosen: you'll need the Flutter SDK. After pulling the code, run `flutter pub get` to install packages, then `flutter run` to start the app on an emulator or device.
 
-1. **프로젝트 구조 파악**  
-   - 레포지토리를 포크(Fork) 떠서 로컬로 클론(clone)  
-   - Python/JS/Flutter 등 해당하는 폴더나 파일 구조를 살펴보고, README나 Wiki를 참고
+We will update this README with precise build and installation steps for the mobile app as soon as they are available. Stay tuned! 🚀
 
-2. **이슈(ISSUE) 탐색**  
-   - GitHub의 [이슈(issues)](./issues) 섹션을 보고, 해결하고 싶은 버그나 기능 요청이 있는지 확인  
-   - 새로 발견한 버그/제안 사항이 있다면 이슈를 작성(버그 리포트/피처 요청 템플릿 활용)
+## Contributing
 
-3. **새 브랜치 생성**  
-   - `feature/add-dip-function` 혹은 `bugfix/logging-issue`와 같이 기능/버그별로 분리해서 작업  
-   - 작업 후 변경점을 커밋(commit)하고 푸시(push) 후, Pull Request(PR) 생성
+Contributions are welcome and greatly appreciated! Being an open-source project, **NeverSell** thrives on community input—whether it's reporting bugs, suggesting features, or contributing code.
 
-4. **PR(Pull Request)**  
-   - PR 템플릿에 맞춰 변경 내용, 테스트 결과 등을 상세히 작성  
-   - 메인테이너/리뷰어 피드백을 반영해 코드 수정  
-   - 코드 스타일(PEP8, ESLint 등) 및 기본 테스트를 통과하면 병합(merge)될 가능성이 높음
+If you want to get involved, please follow these guidelines:
 
-5. **코드 스타일 및 테스트**  
-   - Python의 경우 [PEP8](https://peps.python.org/pep-0008/) 스타일 가이드 권장  
-   - Node.js/TypeScript 영역에서는 [ESLint](https://eslint.org/) 기반 룰 사용 가능  
-   - 테스트 코드는 `pytest`(Python) 혹은 관련 프레임워크(Jest, Flutter test 등)를 활용  
-   - 기여 시 테스트가 모두 통과하는지 확인
+- **Project Setup:** Fork the repository and clone it to your machine. For the CLI part, ensure you have Python set up as described above. For the mobile app part, set up the appropriate environment (Node/React Native or Flutter SDK) once the choice is finalized. We recommend using an editor like VS Code (with relevant extensions for Python/Dart/JS) for a smooth experience.
 
-6. **커뮤니티**  
-   - 프로젝트가 성장하면 Slack, Discord, GitHub Discussions 등 커뮤니티 채널을 운영할 예정  
-   - 개발 이슈뿐만 아니라, DCA 전략 아이디어, DIP 매수 로직 등 폭넓게 논의 환영  
-   - 기여자 가이드(Contributing.md)와 행동 강령(Code of Conduct)을 참고하고, 서로 존중하는 태도로 참여
+- **Branching:** Create a new branch for your feature or bugfix (e.g., `feature/add-kraken-support` or `bugfix/fix-logging-path`).
 
-<br>
+- **Coding Style:** Try to follow the coding style and conventions used in the project. Write clear, concise code and comments where necessary. For Python, adhere to PEP8 style guidelines; for JavaScript/TypeScript, follow standard ESLint rules (we will include linter configurations). 
 
-## 로드맵
+- **Commit Messages:** Write descriptive commit messages explaining the *what* and *why* of your changes.
 
-아래 로드맵은 단계별로 큰 기능과 목표를 나타낸다. 완료된 항목은 `[x]`, 진행 중이거나 계획된 항목은 `[ ]`로 표시한다.
+- **Pull Requests:** When your feature or fix is ready, push your branch to GitHub and open a Pull Request (PR) to the `main` branch. Fill out the PR template (we will provide one) with details about your changes, and reference any relevant issues it addresses. Be open to feedback; maintainers may suggest changes or improvements.
 
-### **1단계: 초기 테스트 & MVP (CLI 중심)**
+- **Issues:** If you encounter a bug or have an idea for an enhancement, please open an issue on GitHub. Use the provided issue templates (bug report or feature request) to ensure we have the necessary details. Upvote 👍 existing issues that you find important to help us prioritize.
 
-- [ ] **기술 스택 확정 및 환경 구성**  
-  Python 및 필요한 라이브러리 세팅, IDE(예: VS Code) 추천 설정  
-- [ ] **바이낸스 API 연동 & 기본 DCA 구현**  
-  CLI에서 특정 주기/금액으로 비트코인을 매수하는 기능을 구현  
-- [ ] **API 키 입력/보관 방식 결정**  
-  `.env` 사용 혹은 환경 변수 사용, 보안 고려 철저  
-- [ ] **CLI DCA 실행 & 로그 기능**  
-  실제 매수 기록을 남기고 에러를 처리해 안정성 검증
+- **Discussion & Communication:** You can also join the project discussions (we might set up a Discord or Slack in the future) to talk with maintainers and other contributors. We aim to be a friendly community – all participants are expected to uphold our Code of Conduct (see `CODE_OF_CONDUCT.md`) and treat each other with respect.
 
-### **2단계: 모바일 앱 개발 (1차 출시 목표)**
+- **Testing:** Where possible, please add tests for new features or fixes. We plan to include a test suite (using pytest for Python and appropriate testing frameworks for the mobile app) to catch regressions. Ensure that `pytest` (for CLI backend logic) and any unit tests for the app are passing before submitting your PR.
 
-- [ ] **프레임워크 선택**  
-  React Native vs Flutter 비교 후 최종 결정  
-- [ ] **UI/UX 설계 및 간단 대시보드 구현**  
-  모바일에서 API 키 관리, 매수 설정, 잔고/누적 매수량 표시 등  
-- [ ] **사용자 인증/로그인 기능**  
-  이메일/비밀번호 혹은 소셜 로그인(옵션)  
-- [ ] **바이낸스 API 연동 (앱 내 실행)**  
-  모바일 앱에서 직접 API 호출(또는 서버 경유)하여 DCA 수행  
-- [ ] **앱 MVP 출시 및 내부/베타 테스트**
+- **Documentation:** If your contribution changes how the app works or adds new options, update the relevant documentation. This could mean editing this README, the Wiki, or inline code comments. Clear documentation makes it easier for others to use and contribute to NeverSell.
 
-### **3단계: DCA 전략 고도화 및 기능 확장**
+By contributing to NeverSell, you agree that your contributions will be licensed under the same open-source license that covers the project. **Thank you for helping make NeverSell better!** 🤝
 
-- [ ] **DCA 최적 전략 리서치**  
-  DIP 매수 기준, 변동성 기반 매수 등 다양한 전략 검토  
-- [ ] **자동 DIP 매수 기능**  
-  시세가 특정 % 이상 하락 시 추가 매수(예: 5% 이상 급락 시 X달러 추가 매수)  
-- [ ] **여러 거래소 연동(CCXT 활용)**  
-  Coinbase, Kraken, Bitfinex 등 추가  
-- [ ] **실시간 시세 감지 기능**  
-  웹소켓 등을 통해 가격 변동을 모니터링하고, 설정에 따라 유연한 매수 로직 실행
+*(Open-source License: We plan to release NeverSell under the MIT License – see `LICENSE` file for details. This means you are free to use, modify, and distribute the code, but with no warranty. We chose MIT to encourage broad usage and contribution.)*
 
-### **4단계: 구독 모델 도입 및 상용화**
+## Roadmap
 
-- [ ] **결제 시스템 연동**  
-  Stripe, PayPal 등으로 구독 결제 플로우 구현  
-- [ ] **요금제 관리**  
-  무료 기본 플랜 + 프리미엄 플랜(여러 거래소, 고급 전략 등)  
-- [ ] **자동 결제 & 갱신**  
-  사용자 구독 상태를 주기적으로 확인 및 갱신  
-- [ ] **부가 기능**  
-  다양한 알림, 유동성 관리, 포트폴리오 분석 등
+We maintain a progressive roadmap to track NeverSell's development milestones. The roadmap is structured in phases, each with a set of tasks. Completed tasks will be checked off. This roadmap is also present in our README to keep users informed of our progress and upcoming features.
 
-### **5단계: 커뮤니티 및 오픈소스 운영 강화**
+**Phase 1: Initial Test and MVP (CLI-based)**  
+- [ ] **Tech Stack Selection & Environment Setup:** Decide on the programming language and tools for the MVP, and configure the development environment (choose an IDE, set up project structure, etc.). *_(For the prototype, Python was chosen for quick development; using VS Code with Cursor AI for codin ([My New Favorite IDE: Cursor](https://www.mensurdurakovic.com/my-new-favorite-ide-cursor/#:~:text=Cursor%20IDE%20represents%20an%20innovative,difference%20when%20using%20Cursor%20IDE)) 70】*  
+- [ ] **Binance API Integration (Basic DCA):** Connect to the Binance API using the user’s API key and implement the core logic to execute a buy order at fixed intervals. This will likely utilize Binance’s SDK/REST endpoints to purchase BTC in small increments.  
+- [ ] **API Key Input & Secure Storage:** Implement a secure method for the user to input their API key (for example, via prompt or config file) and store it safely (e.g., in an environment variable or encrypted file). **Security is a priority** – ensure the key is not exposed in logs or error messages.  
+- [ ] **CLI DCA Execution & Logging:** Allow the CLI tool to run the DCA process (perhaps in a loop or via scheduling). Provide console output and log file writing for each operation (time, amount, price, success/error). Test the process with a small amount to ensure it works reliably.
 
-- [ ] **GitHub 운영 정책 수립**  
-  Issue 템플릿, PR 템플릿, 프로젝트 보드 등 도입  
-- [ ] **문서화 및 기여자 가이드**  
-  Contributing.md, Wiki, API 문서 등 정비  
-- [ ] **커뮤니티 채널 개설**  
-  Discord, Slack, GitHub Discussions 등으로 피드백 수렴  
-- [ ] **사용자 피드백 반영 & 기능 개선**  
-  이슈/PR 적극 수용, 로드맵 업데이트  
-- [ ] **프로젝트 홍보 및 론칭**  
-  블로그, SNS, 커뮤니티 등에 소개하고 유저 베이스 확대
+**Phase 2: Mobile App Development (First Release)**  
+- [ ] **Framework Selection (React Native vs Flutter vs Native):** Evaluate which mobile framework to use by comparing development speed, performance, and community support. *_(React Native offers rapid development and a huge ecosystem, whereas Flutter provides a consistent high-performanc ([Flutter vs React Native: 2024년에 어떤 것을 선택해야 할까요? | UltaHost Blog](https://ultahost.com/blog/ko/flutter-%EB%8C%80-react-native/#:~:text=,%EC%84%B1%EB%8A%A5%EC%97%90%20%EB%B3%80%EB%8F%99%EC%9D%B4%20%EC%9E%88%EC%9D%84%20%EC%88%98%20%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)) 40】. We'll choose the best fit for NeverSell’s need ([Flutter vs React Native: 2024년에 어떤 것을 선택해야 할까요? | UltaHost Blog](https://ultahost.com/blog/ko/flutter-%EB%8C%80-react-native/#:~:text=%EA%B7%B8%EB%9F%AC%EB%82%98%20Flutter%EC%99%80%20%EB%B9%84%EA%B5%90%ED%95%A0%20%EB%95%8C%20React,%EC%9B%90%ED%99%9C%ED%95%9C%20%EC%86%94%EB%A3%A8%EC%85%98%EC%9D%84%20%EB%B0%9B%EA%B2%8C%20%EB%90%A0%20%EA%B2%83%EC%9E%85%EB%8B%88%EB%8B%A4)) 52】*  
+- [ ] **UI/UX Design & Dashboard:** Design an intuitive user interface. Implement a simple dashboard screen showing the user's Bitcoin balance (or amount accumulated via NeverSell), next scheduled buy, and basic controls. Emphasize clarity and simplicity for ease of use.  
+- [ ] **Mobile API Integration:** Connect the mobile app to the Binance API (or through our backend, if ready) so that users can start/stop the DCA from their phone. Ensure that API keys are handled securely on the device (using secure storage provided by the OS).  
+- [ ] **User Authentication:** Implement a login/signup system for the app. This could be a simple email/password or OAuth if a backend exists. Initially, this might be optional if the app stores everything locally, but for syncing across devices and future cloud features, an account system is needed.  
+- [ ] **Mobile MVP Release:** Publish the first version of the mobile app to app stores (or as a public test via TestFlight/Google Play Beta). Gather user feedback on the app’s functionality and fix any critical issues.
+
+**Phase 3: DCA Strategy Enhancement & Feature Expansion**  
+- [ ] **Strategy Research & Optimization:** Analyze market data and research ways to optimize the DCA approach. This may include varying the purchase frequency or amount based on volatility, or pausing buys during extreme conditions, etc. The goal is to improve outcomes while maintaining a simple user experience.  
+- [ ] **"Buy the Dip" (DIP) Feature:** Implement an option to allocate extra funds to buy when the market dips by a certain percentage. For example, users could specify: "If BTC drops more than 5% in 24h, execute an additional buy of $X." This leverages the dip-buy opportunity to enhance returns, addressing a common critique of strict ([Why You Should Care About Dollar-Cost Averaging Your Crypto - Blockworks](https://blockworks.co/news/why-you-should-care-about-dollar-cost-averaging-your-crypto#:~:text=Being%20able%20to%20automatically%20buy,miss%20out%20on%20some%20gains)) 28】. Ensure users have sufficient stablecoin balance for this feature and perhaps integrate a notification when a dip buy occurs.  
+- [ ] **Additional Strategies:** Research and possibly add other automated strategies, such as periodic rebalancing, take-profit or stop-loss triggers for those who want some selling functionality (even though the app is called NeverSell, some users might want to occasionally cash out gains – this can be a debated feature). Each new strategy will be optional and clearly explained to users.  
+- [ ] **Multi-Exchange & Wallet Support:** Extend support beyond Binance. Using a unified API like CCXT, integrate at least 2-3 more exchanges (Coinbase, Kraken, Bitfinex as high priority). This involves mapping the DCA functionality to those exchanges’ APIs and testing accordingly. Also, consider connecting to wallet services or DeFi platforms if users want to DCA from a non-custodial wallet (this might be complex and possibly a later idea). *_(By using a library such as CCXT, which supports 100+ exchanges via one interface, this process can be streaml ([What is CCXT? – Coinmetro Help Centre](https://help.coinmetro.com/hc/en-gb/articles/16351978148893-What-is-CCXT#:~:text=CCXT%20,Learn%20more)) 47】.)_*
+- [ ] **Real-time Price Monitoring:** Incorporate a background service or use exchange websockets to monitor crypto price in real-time. Use this to trigger the dip buys or to alert users of significant market moves. Also, if the user wants to adjust their DCA (pause or increase buys) when certain conditions are met, real-time data is needed. This task might also involve optimizing the app’s performance so constant price checks don’t drain device battery (for mobile) or overload the system.
+
+**Phase 4: Subscription Model & Commercialization**  
+- [ ] **Payment System Integration:** Implement a subscription system for premium features. Likely use **Stripe Billing** for handling recurring payments, as it easily integrates with apps and provides a robust subscription management ([Stripe Billing | Recurring Payments & Subscription Management](https://stripe.com/billing#:~:text=Building%20blocks%20for%20recurring%20billing)) 38】. This will involve setting up plans (monthly/yearly), a checkout flow in the mobile app or web, and secure backend validation of paid users. (We will ensure compliance with app store rules – e.g., using in-app purchases if required for iOS or using external payments if allowed for services.)  
+- [ ] **Subscription Tiers & Management:** Define what premium tiers offer (for example, a free tier with basic DCA on one exchange, and a premium tier with multiple exchanges, advanced strategies, and priority support). Implement in-app gating for premium features and a way for users to upgrade/downgrade. Also handle edge cases like failed payments, grace periods, and renewal reminders.  
+- [ ] **Auto Payment & Renewal:** Enable automatic billing through the chosen payment platform. This includes sending reminders or notifications for expiring payment methods, handling cancellations, and ensuring a smooth user experience for managing their subscription within the app (view status, next billing date, etc.).  
+- [ ] **Additional Premium Features:** To add value for subscribers, consider features such as: integration with interest-bearing accounts for unused funds (e.g., automatically move idle USD to a yield-bearing stablecoin account and use it for DCA), advanced analytics of DCA performance, or the ability to DCA into multiple assets/portfolios. These features will be developed if there is user demand and as resources allow.
+
+**Phase 5: Community & Open-Source Growth**  
+- [ ] **Open-Source Guidelines:** Formulate clear guidelines for external contributors. This includes setting up a CONTRIBUTING.md with instructions (much like the Contributing section above), creating pull request and issue templates on GitHub, and adopting a Code of Conduct. The goal is to make it easy for new contributors to understand how to get involved and the expectations for contributions.  
+- [ ] **Documentation Expansion:** Create thorough documentation for using NeverSell and for developing on it. This might involve a dedicated docs site or wiki covering setup, FAQs, architecture overview, etc. Also, a **Contributor Guide** should outline the project structure, coding conventions, and release process to help onboard developers.  
+- [ ] **Community Engagement:** Establish channels for the community to interact. For example, a Discord server or GitHub Discussions for Q&A, announcements, and general support. Regularly update the community on progress (perhaps via a monthly update post or release notes). Encourage users to share feedback and ideas.  
+- [ ] **Feedback Integration:** Actively listen to user feedback and bug reports. Prioritize fixes and feature improvements based on community input. The roadmap itself will be updated over time reflecting the community’s needs and the project’s lessons learned.  
+- [ ] **Launch & Marketing:** As NeverSell becomes stable and feature-complete, focus on growing its user base. This might include writing blog posts about its features, doing a Product Hunt launch for the app, or partnering with crypto communities to spread the word. While this is beyond pure development, it's part of ensuring the project thrives and reaches those who can benefit from it.
 
 ---
 
-## 결론
+**Legend:** Tasks with a checkbox ([ ]) are planned or in progress. Once a task is completed, it will be marked as done ([x]). This roadmap is subject to change; it’s a living document that evolves with the project. New ideas might be added and priorities may shift as we gather more feedback.
 
-**NeverSell**은 암호화폐 장기 투자자들이 손쉽게 비트코인을 적립 매수하도록 돕는 프로젝트다.  
-- CLI MVP를 통해 초기에 빠르게 가치를 검증하고,  
-- 모바일 앱으로 UX를 강화하며,  
-- 다양한 거래소와 DIP 매수 같은 고급 기능으로 확장하고,  
-- 궁극적으로 구독 모델 등을 통해 지속 가능한 프로젝트가 되는 것이 목표다.
+## Conclusion
 
-오픈소스 형태로 운영하므로, 누구나 이슈 등록, 기능 제안, 코드 기여가 가능하다.  
-서로의 아이디어를 모아 발전시키고, “절대 팔지 않는다(Never Sell)”라는 장기적 관점으로 함께 성장해 나가길 기대한다.
+NeverSell is an ambitious project at the intersection of crypto investing and automation. By following this roadmap, we plan to iterate from a simple prototype to a comprehensive platform that makes crypto DCA effortless for anyone. We believe in the power of consistent investing and the value of community-driven development. With the chosen tech stack and the support of contributors, we’re confident about building a reliable and innovative DCA assistant for crypto enthusiasts.
 
-> **문의 및 기여**  
-> - GitHub: [https://github.com/JeongChangsu/never-sell](https://github.com/사용자이름/never-sell)  
-> - Issue/PR을 통해 제안 및 기여 환영!
-
-**감사합니다.**  
-**Happy DCA & Never Sell!**
+We hope you'll join us on this journey. 🙌 **Happy Investing, and Never Sell!**
