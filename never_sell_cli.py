@@ -2,9 +2,8 @@ import os
 import time
 import argparse
 
-# python-binance 라이브러리 (설치: pip install python-binance)
-from binance.client import Client
 from binance.enums import *
+from binance.client import Client
 
 
 def parse_interval(interval_str: str) -> int:
@@ -56,7 +55,7 @@ def buy_crypto(client: Client, symbol: str, usdt_amount: float):
 
     # 매수 주문 실행
     try:
-        order = client.create_order(
+        client.create_order(
             symbol=symbol,
             side=SIDE_BUY,
             type=ORDER_TYPE_MARKET,
