@@ -91,61 +91,59 @@ We maintain a progressive roadmap to guide NeverSell’s development. **Phase 1*
 
 ### **Phase 2: Mobile App & Backend Development**
 
-Below is the **updated** Phase 2 roadmap based on recent consulting and finalized stack decisions:
-
-1. **Tech Stack Confirmation & Environment Setup**  
+- [ ] **Tech Stack Confirmation & Environment Setup**  
    - Install the Flutter SDK on Mac M1 (or your platform), set up iOS/Android emulators.  
    - Create a Python virtual environment for FastAPI, install necessary libraries (pytest, flake8).  
    - Initialize both the Flutter project and FastAPI project in a well-structured repository.  
    - Confirm usage of Docker, Docker Compose, and PostgreSQL.
 
-2. **Refine Requirements & Design**  
+- [ ] **Refine Requirements & Design**  
    - Convert high-level ideas from Phase 1 into detailed specs.  
    - List all mobile app screens and corresponding API endpoints (e.g., login/signup, view item list, item details).  
    - Define data models (ERD) and user stories for each core feature.
 
-3. **UI/UX Design & Prototyping**  
+- [ ] **UI/UX Design & Prototyping**  
    - Create wireframes/mockups for main screens.  
    - Implement a consistent design system using Flutter’s Material/Cupertino widgets.  
    - If preliminary designs were done in Phase 1, refine and validate them here.
 
-4. **Backend Core Feature Development (FastAPI)**  
+- [ ] **Backend Core Feature Development (FastAPI)**  
    - Set up the PostgreSQL database schema (SQLAlchemy or FastAPI’s SQLModel).  
    - Implement authentication with JWT (OAuth2 password flow) for /auth/login and /auth/signup.  
    - Develop item-related APIs (e.g., /items for list, /items/{id} for detail, create/edit/delete) using Pydantic models.  
    - Write unit tests (pytest) for crucial logic (auth, business rules) and confirm via Swagger UI.
 
-5. **Mobile App Development (Flutter)**  
+- [ ] **Mobile App Development (Flutter)**  
    - Configure the Flutter project structure (routing, theming).  
    - Implement login/signup screens, integrate with the FastAPI endpoints (e.g., using the `dio` or `http` package).  
    - Securely store and attach JWT tokens in API requests.  
    - Build out main/item list screens, item details, and creation/edit features.  
    - Ensure consistent iOS/Android UX, handle platform-specific back buttons, etc.
 
-6. **Integration Testing & QA**  
+- [ ] **Integration Testing & QA**  
    - Test end-to-end flows between the Flutter app and FastAPI backend.  
    - Validate proper handling of edge cases (incorrect credentials, network issues).  
    - Fix bugs, refine error handling, consider simple performance checks (concurrent requests, DB indexing).  
    - Optimize Flutter release builds for speed and size.
 
-7. **Docker Containerization**  
+- [ ] **Docker Containerization**  
    - Write a Dockerfile for the FastAPI backend, test image build locally.  
    - Use Docker Compose to run FastAPI + PostgreSQL in a local dev environment.  
    - Document environment variables, ensure secrets (.env) are not baked into images.
 
-8. **Initial Deployment (Cloud Instance)**  
+- [ ] **Initial Deployment (Cloud Instance)**  
    - Provision a small server (e.g., DigitalOcean Droplet or AWS EC2).  
    - Install Docker + Compose, deploy the FastAPI + PostgreSQL containers.  
    - Set up Nginx for reverse proxy (optionally Let’s Encrypt SSL).  
    - Verify the mobile app can reach the cloud API endpoint over HTTPS (e.g., https://api.neversell.com).
 
-9. **Mobile App Release Preparation**  
+- [ ] **Mobile App Release Preparation**  
    - Configure iOS TestFlight and Google Play Internal Testing.  
    - Update app icons, splash screens, privacy policy if needed.  
    - Deploy a beta (v0.1.0) to gather feedback from testers.  
    - Address store requirements (screenshots, metadata) and fix device-specific issues.
 
-10. **Documentation & Next Steps**  
+- [ ] **Documentation & Next Steps**  
    - Update README with Phase 2 details, instructions for local dev vs. Docker.  
    - Finalize API docs (Swagger or a brief endpoint list).  
    - Refactor code for maintainability (remove TODOs, ensure consistent coding style).  

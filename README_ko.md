@@ -94,63 +94,61 @@ NeverSell 로드맵은 단계별로 기능과 목표를 정의합니다. **Phase
 
 ### **Phase 2: 모바일 앱 & 백엔드 개발**
 
-아래는 **컨설팅 결과**를 바탕으로 확정된 Phase 2 로드맵입니다:
-
-1. **기술 스택 확정 및 개발 환경 설정**  
+- [ ] **기술 스택 확정 및 개발 환경 설정**  
    - Flutter SDK 설치(iOS/Android 에뮬레이터 설정)  
    - FastAPI용 Python 가상환경 구성, pytest/flake8 등 설치  
    - Flutter 프로젝트 및 FastAPI 프로젝트 초기화, 디렉터리 구조 정비  
    - Docker, PostgreSQL 설정 확정
 
-2. **요구사항 재정의 및 설계**  
+- [ ] **요구사항 재정의 및 설계**  
    - Phase 1 아이디어를 구체화해 모바일 화면과 백엔드 API 엔드포인트 목록 작성  
    - 예: 로그인/회원가입, 아이템 목록 조회, 아이템 상세/거래 등  
    - ERD(데이터베이스 구조) 설계, 주요 기능별 유저 스토리 도출
 
-3. **UI/UX 디자인 및 프로토타이핑**  
+- [ ] **UI/UX 디자인 및 프로토타이핑**  
    - 핵심 화면 와이어프레임/목업 작성  
    - Flutter Material/Cupertino 위젯을 활용해 일관된 디자인 시스템 구성  
    - Phase 1에서 이미 디자인이 일부 끝났다면 보완/확인 후 반영
 
-4. **백엔드 핵심 기능 개발 (FastAPI)**  
+- [ ] **백엔드 핵심 기능 개발 (FastAPI)**  
    - PostgreSQL 스키마 설계, SQLAlchemy 모델 정의  
    - JWT 인증(OAuth2)으로 /auth/login, /auth/signup 구현  
    - 아이템(Item) 관련 API(/items, /items/{id}, 생성/수정/삭제 등) 개발  
    - Pydantic 모델로 요청/응답 검증, Swagger UI 확인, pytest로 단위 테스트
 
-5. **모바일 앱 개발 (Flutter)**  
+- [ ] **모바일 앱 개발 (Flutter)**  
    - 프로젝트 셋업(폴더 구조, 라우팅 등)  
    - 로그인/회원가입 화면 구현, FastAPI 연동(dio/http 패키지)  
    - JWT 토큰 안전 저장(secure storage) 및 API 호출 시 헤더에 포함  
    - 메인/아이템 목록/상세/생성/수정 UI 구현 & 백엔드 연동  
    - iOS/Android 플랫폼별 UX 차이 점검
 
-6. **통합 테스트 및 품질 개선**  
+- [ ] **통합 테스트 및 품질 개선**  
    - Flutter 앱 ↔ FastAPI 백엔드 연동 테스트 (로그인, 데이터 조회/생성 등)  
    - 에뮬레이터(iOS/Android)에서 시나리오 점검 (네트워크 단절, 잘못된 입력 등)  
    - 오류/버그 수정, 성능 점검(동시 요청 시 응답 속도, DB 인덱스 검토)  
    - Flutter 릴리스 빌드 최적화(불필요 패키지 제거, ProGuard 등 고려)
 
-7. **Docker 컨테이너 구성**  
+- [ ] **Docker 컨테이너 구성**  
    - FastAPI 백엔드용 Dockerfile 작성, 이미지 빌드 테스트  
    - PostgreSQL도 Docker로 로컬 테스트, docker-compose.yml 구성  
    - .env 등 민감정보가 이미지에 포함되지 않도록 주의  
    - README에 Docker 빌드/실행 방법 문서화
 
-8. **1차 배포 (클라우드 인스턴스)**  
+- [ ] **1차 배포 (클라우드 인스턴스)**  
    - DigitalOcean 등에서 Ubuntu 서버 생성, 보안 설정  
    - Docker + Compose 설치 후, 빌드한 이미지 배포  
    - docker-compose로 백엔드 + DB 구동  
    - Nginx 리버스 프록시 및 SSL 인증서(Let’s Encrypt) 설정  
    - https://api.neversell.com (가칭) 등 도메인 연결, 외부 접근 테스트
 
-9. **모바일 앱 배포 준비**  
+- [ ] **모바일 앱 배포 준비**  
    - iOS TestFlight, 구글 플레이 내부 테스트 등 설정  
    - 앱 아이콘, 스플래시, 개인정보처리방침 등 스토어 요구사항 충족  
    - v0.1.0 베타 업로드 후 피드백 수렴  
    - 기기별 이슈 수정, 스크린샷/설명 등 마켓 메타데이터 정리
 
-10. **문서 정리 및 코드 리팩토링**  
+- [ ] **문서 정리 및 코드 리팩토링**  
    - README.md에 Phase 2 진행 내용과 사용 방법 정리  
    - API 명세(Swagger UI 또는 요약) 문서화  
    - TODO/미뤄둔 기능 리팩토링, 코드 스타일 통일  
